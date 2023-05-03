@@ -1,5 +1,4 @@
 import React from "react";
-import "./NewExpenseClose.css";
 
 const NewExpenseClose = (props) => {
 	const handleClick = () => {
