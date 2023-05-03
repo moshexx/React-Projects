@@ -47,10 +47,15 @@ const ExpenseForm = (props) => {
         setTitle('');
         setAmount('');
         setDate('2023-04-28');
+        props.onFinish();
     };
 
+    const handleReset = () => {
+        props.onFinish();
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} onReset={handleReset}>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
@@ -84,6 +89,7 @@ const ExpenseForm = (props) => {
                 </div>
             </div>
             <div className="new-expense__actions">
+                <button type="reset">Cancel</button>
                 <button type="submit">Add Expense</button>
             </div>
         </form>
