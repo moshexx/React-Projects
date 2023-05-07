@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NewExpense.css";
-import ExpenseForm from './ExpenseForm';
+import NewExpenseOpen from './NewExpenseOpen';
+import NewExpenseClose from './NewExpenseClose';
 
-const NewExpense = (props) => {
-    const handleSaveExpense = (newExpenseData) => {
-        const expenseData = {
-            ...newExpenseData,
-            id: generateId()
-        };
-        props.onAddExpense(expenseData);
+const NewExpense = ({onAddExpense}) => {
+    const [isOpen, setIsOpen] = useState(false);
+    let contant;
+    if (isOpen) {
+        contant = <NewExpenseOpen onAddExpense={onAddExpense} onFinish={setIsOpen} />
+    } else {
+        contant = <NewExpenseClose onFinish={setIsOpen} />
     }
 
-    return <div className="new-expense">
-        <ExpenseForm onSaveExpenseData={handleSaveExpense} />
-    </div>;
+    return <div className="new-expense">{contant}</div>
 };
-
-const generateId = () => Math.random().toString();
 
 export default NewExpense;

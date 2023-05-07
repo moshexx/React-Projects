@@ -1,37 +1,21 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = (props) => {
+const ExpenseForm = ({onFinish, onSaveExpenseData}) => {
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
     const [date, setDate] = useState("2023-04-28");
-    // const [userInput, setUserInput] = useState({
-    //     title: "",
-    //     amount: "",
-    //     date: "",
-    // });
 
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
-        /** If my next state depands on the previous state - we should use a function to get the most updated prev (sync the state updating is async */
-        // setUserInput((prevState) => {
-        //     return {...prevState, title: event.target.value};
-        // });
     };
 
     const handleAmountChange = (event) => {
         setAmount(event.target.value);
-        // setUserInput((prevState) => {
-        //     return {...prevState, amount: event.target.value};
-        // });
     };
 
     const handleDateChange = (event) => {
-        console.log(event.target.value);
         setDate(event.target.value);
-        // setUserInput((prevState) => {
-        //     return {...prevState, date: event.target.value};
-        // });
     };
 
     const handleSubmit = (event) => {
@@ -39,18 +23,23 @@ const ExpenseForm = (props) => {
 
         const expenseData = {
             title: title,
-            amount: amount,
+            amount: +amount,
             date: new Date(date),
         };
 
-        props.onSaveExpenseData(expenseData);
+        onSaveExpenseData(expenseData);
         setTitle('');
         setAmount('');
-        setDate('2023-04-28');
+        setDate(new Date().toLocaleDateString('en-CA')); //YYYY-MM-DD
+        onFinish();
     };
 
+    const handleReset = () => {
+        onFinish();
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} onReset={handleReset}>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
@@ -84,6 +73,7 @@ const ExpenseForm = (props) => {
                 </div>
             </div>
             <div className="new-expense__actions">
+                <button type="reset">Cancel</button>
                 <button type="submit">Add Expense</button>
             </div>
         </form>
