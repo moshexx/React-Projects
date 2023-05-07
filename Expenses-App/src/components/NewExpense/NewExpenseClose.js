@@ -1,8 +1,8 @@
 import React from "react";
 
-const NewExpenseClose = (props) => {
+const NewExpenseClose = ({onFinish}) => {
 	const handleClick = () => {
-		props.onFinish(true);
+		onFinish(true);
 	}
 
     return (

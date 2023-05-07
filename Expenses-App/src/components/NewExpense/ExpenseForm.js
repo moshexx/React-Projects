@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = (props) => {
+const ExpenseForm = ({onFinish, onSaveExpenseData}) => {
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
     const [date, setDate] = useState("2023-04-28");
@@ -27,15 +27,15 @@ const ExpenseForm = (props) => {
             date: new Date(date),
         };
 
-        props.onSaveExpenseData(expenseData);
+        onSaveExpenseData(expenseData);
         setTitle('');
         setAmount('');
         setDate(new Date().toLocaleDateString('en-CA')); //YYYY-MM-DD
-        props.onFinish();
+        onFinish();
     };
 
     const handleReset = () => {
-        props.onFinish();
+        onFinish();
     }
 
     return (

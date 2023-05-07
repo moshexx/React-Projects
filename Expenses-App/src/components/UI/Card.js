@@ -1,11 +1,9 @@
-// a shell componnent - עוטף
-// חוסך קוד של הקומפוננטה  החיצונית (בשונה מקומפוננטה רגילה שחוסכמת קוד בקומפוננטות הפנימיות שחוזרות על עצמן)
-// כרגע משמש רק להוספת עיצוב שחוזרת על עצמו במספר קומפוננטות שונות
+// a shell componnent
 import "./Card.css";
 
-function Card(props) {
-    const classes = `card ${props.className}`;
-    return <div className={classes}>{props.children}</div>;
+function Card({className, children}) {
+    const classes = `card ${className}`;
+    return <div className={classes}>{children}</div>;
 }
 
 export default Card;

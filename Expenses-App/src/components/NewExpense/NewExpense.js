@@ -3,11 +3,11 @@ import "./NewExpense.css";
 import NewExpenseOpen from './NewExpenseOpen';
 import NewExpenseClose from './NewExpenseClose';
 
-const NewExpense = (props) => {
+const NewExpense = ({onAddExpense}) => {
     const [isOpen, setIsOpen] = useState(false);
     let contant;
     if (isOpen) {
-        contant = <NewExpenseOpen onAddExpense={props.onAddExpense} onFinish={setIsOpen} />
+        contant = <NewExpenseOpen onAddExpense={onAddExpense} onFinish={setIsOpen} />
     } else {
         contant = <NewExpenseClose onFinish={setIsOpen} />
     }

@@ -1,17 +1,17 @@
 import React from "react";
 import ExpenseForm from './ExpenseForm';
 
-const NewExpenseOpen = (props) => {
+const NewExpenseOpen = ({onAddExpense, onFinish}) => {
     const handleSaveExpense = (newExpenseData) => {
         const expenseData = {
             ...newExpenseData,
             id: generateId()
         };
-        props.onAddExpense(expenseData);
+        onAddExpense(expenseData);
     }
 
     const handleFinish = () => {
-        props.onFinish(false);
+        onFinish(false);
     }
 
     return <div>
